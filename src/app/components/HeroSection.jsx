@@ -3,6 +3,8 @@
 import { TypeAnimation } from 'react-type-animation'
 import { config } from '@/data/config'
 import MatrixRain from './MatrixRain'
+import { motion } from 'framer-motion'
+import { FiChevronDown } from 'react-icons/fi'
 
 const HeroSection = () => {
   return (
@@ -27,6 +29,57 @@ const HeroSection = () => {
           />
         </div>
       </div>
+      {/* Scroll down indicator */}
+      <a
+        href='#projects'
+        className='absolute bottom-4 left-1/2 -translate-x-1/2 z-10 '
+        aria-label='Scroll to projects'
+      >
+        <motion.div
+          // This container orchestrates the animation of its children
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.3, // Animates children 0.3s after one another
+                repeat: Infinity,
+                repeatType: 'loop',
+                duration: 1.5,
+                ease: 'linear',
+              },
+            },
+          }}
+          initial='hidden'
+          animate='visible'
+        >
+          {/* These are the three chevrons that will be animated */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: -10 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <FiChevronDown className='text-text-secondary text-3xl' />
+          </motion.div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: -10 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <FiChevronDown className='text-text-secondary text-3xl -mt-4' />
+          </motion.div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: -10 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <FiChevronDown className='text-text-secondary text-3xl -mt-4' />
+          </motion.div>
+        </motion.div>
+      </a>
     </section>
   )
 }

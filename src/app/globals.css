@@ -35,6 +35,9 @@
   Apply theme variables to the base layer.
 */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-text-primary);
