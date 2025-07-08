@@ -46,6 +46,28 @@ export const config = {
       githubUrl: 'https://github.com/IsbatBInHossain/bookstore-cms-backend',
       demoUrl: '',
     },
+    {
+      title: 'NodeChess',
+      description:
+        'A real-time multiplayer chess web app with matchmaking, built using WebSockets and a Node.js backend. Optimized for mobile and responsive play.',
+      tags: ['Node.js', 'WebSocket', 'Express', 'React', 'MongoDB'],
+      githubUrl: 'https://github.com/IsbatBInHossain/nodechess',
+      demoUrl: 'https://node-chess.netlify.app/',
+    },
+    {
+      title: 'Custom CMS for Bookstores',
+      description:
+        'A flexible, backend-focused CMS built to manage bookstore inventory, orders, and content. Designed with scalability and future website builder integration in mind.',
+      tags: [
+        'Node.js',
+        'Express',
+        'PostgreSQL',
+        'REST API',
+        'Google Books API',
+      ],
+      githubUrl: 'https://github.com/IsbatBInHossain/bookstore-cms-backend',
+      demoUrl: '',
+    },
   ],
 
   // Contact
