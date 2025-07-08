@@ -32,53 +32,33 @@ const HeroSection = () => {
       {/* Scroll down indicator */}
       <a
         href='#projects'
-        className='absolute bottom-4 left-1/2 -translate-x-1/2 z-10 '
+        className='absolute bottom-4 left-1/2 -translate-x-1/2 z-10'
         aria-label='Scroll to projects'
       >
-        <motion.div
-          // This container orchestrates the animation of its children
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.3, // Animates children 0.3s after one another
+        <div className='flex flex-col items-center'>
+          {/* Render three chevrons, each with its own motion.div and a unique delay */}
+          {[0, 0.2, 0.4].map(delay => (
+            <motion.div
+              key={delay}
+              initial={{ opacity: 0, y: -5 }}
+              animate={{
+                opacity: [0, 1, 0], // Fades in, then fades out
+                y: 5,
+              }}
+              transition={{
+                duration: 1.5,
                 repeat: Infinity,
                 repeatType: 'loop',
-                duration: 1.5,
+                repeatDelay: 1, // The gap between each full loop
+                delay: delay, // The initial delay that creates the cascade
                 ease: 'linear',
-              },
-            },
-          }}
-          initial='hidden'
-          animate='visible'
-        >
-          {/* These are the three chevrons that will be animated */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: -10 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <FiChevronDown className='text-text-secondary text-3xl' />
-          </motion.div>
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: -10 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <FiChevronDown className='text-text-secondary text-3xl -mt-4' />
-          </motion.div>
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: -10 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <FiChevronDown className='text-text-secondary text-3xl -mt-4' />
-          </motion.div>
-        </motion.div>
+              }}
+              className='-mt-2' // Negative margin to stack them closely
+            >
+              <FiChevronDown className='text-text-secondary text-3xl' />
+            </motion.div>
+          ))}
+        </div>
       </a>
     </section>
   )
