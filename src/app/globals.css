@@ -2,7 +2,7 @@
 @import 'tailwindcss';
 
 @theme {
-  /* 1. Define our color palette */
+  /* Define color palette */
   --color-background: #0d0208;
   --color-matrix-green: #00ff41;
   --color-matrix-green-dark: #008f26;
