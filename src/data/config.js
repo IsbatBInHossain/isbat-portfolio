@@ -1,6 +1,6 @@
 // A central place for all data
 export const config = {
-  name: 'Isbat Bin Hossain',
+  name: 'Isbat',
 
   // Main role
   role: 'Backend Engineer',
