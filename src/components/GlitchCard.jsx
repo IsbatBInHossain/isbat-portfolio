@@ -1,9 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 
-// Helper function to generate a random string
 const generateRandomString = (length, characterSet) => {
   let result = ''
   for (let i = 0; i < length; i++) {
@@ -13,91 +12,86 @@ const generateRandomString = (length, characterSet) => {
   }
   return result
 }
-
 const anomolyCharacters =
   'アィカサタナハマヤャラワガザダバパイキシチニヒミリギジヂビピウクスツヌフムユュルグズブヅプエケセテネヘメレゲゼデベペオコソトノホモヨョロゴゾドボポヴッンАВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0123456789#?&%$*<>'
 
 const GlitchCard = ({ children }) => {
   const [isDecrypting, setIsDecrypting] = useState(false)
-  const [isDecrypted, setIsDecrypted] = useState(false)
+  const [isReady, setIsReady] = useState(false)
   const [randomString, setRandomString] = useState('')
 
-  const controls = useAnimation()
   const intervalRef = useRef(null)
+  const isInViewRef = useRef(false) // Ref to track viewport status
 
-  // Effect to generate the ever-changing random string
+  // Effect to set readiness after a short delay
   useEffect(() => {
-    // Start generating random strings only when not decrypted
-    if (!isDecrypted) {
+    const timer = setTimeout(() => setIsReady(true), 200)
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Effect to generate the random string noise
+  useEffect(() => {
+    if (!isDecrypting) {
       intervalRef.current = setInterval(() => {
         setRandomString(generateRandomString(1500, anomolyCharacters))
       }, 100)
+    } else {
+      clearInterval(intervalRef.current)
     }
+    return () => clearInterval(intervalRef.current)
+  }, [isDecrypting])
 
-    // Cleanup function to clear the interval
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-    }
-  }, [isDecrypted])
-
-  const startDecryption = () => {
-    if (!isDecrypting) {
+  useEffect(() => {
+    // Check if the component is ready AND in view, but not already decrypting.
+    if (isReady && isInViewRef.current && !isDecrypting) {
       setIsDecrypting(true)
-
-      // Start both animations simultaneously
-      controls.start('visible').then(() => {
-        // Once animations are complete...
-        setIsDecrypted(true)
-        setIsDecrypting(false)
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current)
-        }
-      })
     }
-  }
+  }, [isReady, isDecrypting]) // This effect runs whenever `isReady` changes.
+
+  const animationDuration = 1.2
 
   return (
     <motion.div
       className='relative w-full h-[350px] rounded-lg overflow-hidden border border-matrix-green-dark/30'
-      onViewportEnter={startDecryption}
+      // onViewportEnter now just updates our ref.
+      onViewportEnter={() => {
+        isInViewRef.current = true
+        // If the component is already ready when it enters view, decrypt immediately.
+        if (isReady) {
+          setIsDecrypting(true)
+        }
+      }}
       viewport={{ once: true, amount: 0.5 }}
     >
-      {/* Layer 1: The Revealed Content (initially hidden by the clip-path) */}
+      {/* The animation layers below this point are unchanged */}
       <motion.div
         className='absolute inset-0 w-full h-full'
+        animate={isDecrypting ? 'visible' : 'hidden'}
         variants={{
           hidden: { clipPath: 'inset(0 0 100% 0)' },
           visible: { clipPath: 'inset(0 0 0% 0)' },
         }}
-        initial='hidden'
-        animate={controls}
-        transition={{ duration: 1, ease: 'easeInOut' }}
+        transition={{ duration: animationDuration, ease: 'easeOut' }}
       >
         {children}
       </motion.div>
 
-      {/* Layer 2: The "Encrypted" Noise (visible until decrypted) */}
-      {!isDecrypted && (
-        <div className='absolute inset-0 bg-background p-4'>
-          <p className='text-xs text-matrix-green/60 h-full break-words whitespace-pre-wrap font-mono leading-tight'>
-            {randomString}
-          </p>
-        </div>
-      )}
+      <motion.div
+        className='absolute inset-0 bg-background p-4'
+        animate={isDecrypting ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: animationDuration * 0.8, delay: 0.1 }}
+      >
+        <p className='text-xs text-matrix-green/60 h-full break-words whitespace-pre-wrap font-mono leading-tight'>
+          {randomString}
+        </p>
+      </motion.div>
 
-      {/* Layer 3: The Scan Line (visible only during decryption) */}
       {isDecrypting && (
         <motion.div
-          className="absolute left-0 w-full h-1 bg-matrix-green/90 shadow-[0_0_15px_2px_theme('colors.matrix-green')]"
-          variants={{
-            hidden: { top: '0%' },
-            visible: { top: '100%' },
-          }}
-          initial='hidden'
-          animate={controls}
-          transition={{ duration: 1, ease: 'easeInOut' }}
+          className="absolute left-0 w-full h-[2px] bg-matrix-green shadow-[0_0_15px_1px_theme('colors.matrix-green')]"
+          initial={{ top: '0%' }}
+          animate={{ top: '100%' }}
+          transition={{ duration: animationDuration, ease: 'easeOut' }}
         />
       )}
     </motion.div>
