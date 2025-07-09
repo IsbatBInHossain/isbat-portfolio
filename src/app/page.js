@@ -1,6 +1,6 @@
-import HeroSection from './components/HeroSection'
-import ProjectShowcase from './components/ProjectShowcase'
-import Footer from './components/Footer'
+import HeroSection from '../components/HeroSection'
+import ProjectShowcase from '../components/ProjectShowcase'
+import Footer from '../components/Footer'
 
 export default function Home() {
   return (
