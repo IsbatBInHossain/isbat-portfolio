@@ -78,7 +78,11 @@ const GlitchCard = ({ children }) => {
 
       <motion.div
         className='absolute inset-0 bg-background p-4'
-        animate={isDecrypting ? { opacity: 0 } : { opacity: 1 }}
+        animate={
+          isDecrypting
+            ? { opacity: 0, pointerEvents: 'none' }
+            : { opacity: 1, pointerEvents: 'auto' }
+        }
         transition={{ duration: animationDuration * 0.8, delay: 0.1 }}
       >
         <p className='text-xs text-matrix-green/60 h-full break-words whitespace-pre-wrap font-mono leading-tight'>
