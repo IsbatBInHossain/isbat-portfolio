@@ -37,9 +37,24 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Custom cursor */
     cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0V24M0 12H24" stroke="%2300FF41" stroke-width="2"/></svg>')
         12 12,
       auto;
+
+    /*
+      Custom Text Selection Highlight
+      */
+    ::selection {
+      background-color: var(--color-matrix-green);
+      color: var(--color-background);
+    }
+
+    /* For Firefox, which uses a different pseudo-element */
+    ::-moz-selection {
+      background-color: var(--color-matrix-green);
+      color: var(--color-background);
+    }
   }
   body {
     background-color: var(--color-background);
