@@ -7,8 +7,11 @@ const firaCode = Fira_Code({
 })
 
 export const metadata = {
-  title: 'Isbat - Backend Engineer',
+  title: 'Isbat | Portfolio',
   description: 'The portfolio of Isbat, a Backend Engineer and System Builder.',
+  icons: {
+    icon: '/icon.svg',
+  },
 }
 
 export default function RootLayout({ children }) {
