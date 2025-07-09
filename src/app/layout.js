@@ -1,26 +1,39 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import { Fira_Code } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
+import Loader from '@/components/Loader'
 
 const firaCode = Fira_Code({
   subsets: ['latin'],
   display: 'swap',
 })
 
-export const metadata = {
-  title: 'Isbat | Portfolio',
-  description: 'The portfolio of Isbat, a Backend Engineer and System Builder.',
-  icons: {
-    icon: '/icon.svg',
-  },
-}
+// We can't export metadata from a Client Component so use useEffect
 
 export default function RootLayout({ children }) {
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Set document title and metadata
+  useEffect(() => {
+    document.title = 'Isbat | Portfolio'
+    document.description =
+      'The portfolio of Isbat, a Backend Engineer and System Builder.'
+  }, [])
+
   return (
     <html lang='en'>
       <body className={firaCode.className}>
-        <Navbar />
-        {children}
+        {isLoading ? (
+          <Loader onLoadingComplete={() => setIsLoading(false)} />
+        ) : (
+          <>
+            <Navbar />
+            {children}
+          </>
+        )}
       </body>
     </html>
   )
