@@ -5,6 +5,7 @@ import { TypeAnimation } from 'react-type-animation'
 
 const Loader = ({ onLoadingComplete }) => {
   const [sequenceStep, setSequenceStep] = useState(0)
+  const [showFinalMessage, setShowFinalMessage] = useState(false)
 
   // This effect will advance the animation sequence based on timers
   useEffect(() => {
@@ -12,8 +13,7 @@ const Loader = ({ onLoadingComplete }) => {
       setTimeout(() => setSequenceStep(1), 1000),
       setTimeout(() => setSequenceStep(2), 2500),
       setTimeout(() => setSequenceStep(3), 4000),
-      setTimeout(() => setSequenceStep(4), 5500),
-      setTimeout(() => onLoadingComplete(), 9000),
+      setTimeout(() => setShowFinalMessage(true), 5500),
     ]
 
     // Cleanup function to clear all timeouts if the component unmounts
@@ -58,7 +58,7 @@ const Loader = ({ onLoadingComplete }) => {
           </div>
         )}
 
-        {sequenceStep >= 4 && (
+        {showFinalMessage && (
           <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full'>
             <TypeAnimation
               sequence={[
@@ -67,6 +67,11 @@ const Loader = ({ onLoadingComplete }) => {
                 'The Matrix has you...',
                 1500,
                 'Follow the white rabbit.',
+                1000,
+                // After the final message, call onLoadingComplete
+                () => {
+                  onLoadingComplete()
+                },
               ]}
               wrapper='p'
               cursor={true}
