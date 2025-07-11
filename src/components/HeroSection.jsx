@@ -9,11 +9,9 @@ import { FiChevronDown } from 'react-icons/fi'
 const HeroSection = () => {
   return (
     <section className='relative flex flex-col items-center justify-center text-center h-[100vh] min-h-[400px] md:min-h-[500px] mb-16 overflow-hidden w-full'>
-      {/* The Matrix Rain background effect. */}
       <MatrixRain />
 
-      {/* The content, layered on top. No extra overlay needed. */}
-      <div className='relative z-10 p-4'>
+      <div className='relative z-10 p-4 crt-text'>
         <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-[0_2px_2px_rgba(0,0,0,0.7)]'>
           Hi, I'm {config.name}.
         </h1>

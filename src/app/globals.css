@@ -113,6 +113,14 @@
     text-shadow: 0 0 5px var(--color-matrix-green);
     /* The subtle text blur */
     filter: blur(0.4px);
+    position: relative;
+    z-index: 2;
+  }
+  .crt-text-subtle {
+    text-shadow: 0 0 2px var(--color-matrix-green);
+    filter: blur(0.2px);
+    position: relative;
+    z-index: 2;
   }
 
   /* Scanline Overlay */

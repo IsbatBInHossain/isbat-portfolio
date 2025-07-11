@@ -27,7 +27,11 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body className={`${firaCode.className} bg-background`}>
         <div className=' crt-effect'>
-          {isLoading ? (
+          <main className='crt-text-subtle'>
+            <Navbar />
+            {children}
+          </main>
+          {/* {isLoading ? (
             <Loader onLoadingComplete={() => setIsLoading(false)} />
           ) : (
             <>
@@ -36,7 +40,7 @@ export default function RootLayout({ children }) {
                 {children}
               </main>
             </>
-          )}
+          )} */}
         </div>
       </body>
     </html>
