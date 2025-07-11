@@ -8,7 +8,7 @@ const PasswordModal = ({ onComplete }) => {
 
   useEffect(() => {
     if (status === 'granted') {
-      const timer = setTimeout(onComplete, 1500)
+      const timer = setTimeout(onComplete, 1700)
       return () => clearTimeout(timer)
     }
   }, [status, onComplete])
