@@ -6,6 +6,7 @@ import { useMotionValue, useSpring, animate } from 'framer-motion'
 import HeroSection from '@/components/HeroSection'
 import ProjectShowcase from '@/components/ProjectShowcase'
 import Footer from '@/components/Footer'
+import AboutSection from '@/components/AboutSection'
 
 export default function Home() {
   const gridRef = useRef(null)
@@ -59,8 +60,9 @@ export default function Home() {
       <HeroSection />
       <div ref={gridRef} className='grid-background w-full flex justify-center'>
         <div className='interactive-grid-spotlight'></div>
-        <div className='max-w-4xl w-full p-4 md:p-8 lg:p-12'>
+        <div className='max-w-5xl w-full p-4 md:p-8 lg:p-12'>
           <ProjectShowcase />
+          <AboutSection />
           <Footer />
         </div>
       </div>

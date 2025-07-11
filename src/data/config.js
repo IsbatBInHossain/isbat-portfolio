@@ -26,6 +26,7 @@ export const config = {
       USER: 'Isbat',
       ROLE: 'Backend Engineer',
       STATUS: 'Seeking New Challenges',
+      LOCATION: 'Cyber Space',
       HOST: '127.0.0.1',
     },
     // Content for the [ STACK ] tab
