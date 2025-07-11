@@ -50,8 +50,10 @@ const HackingSequence = ({ onComplete }) => {
           <p>
             (The 1539 ports scanned but not shown below are in state: closed)
           </p>
-          <p>Port State Service</p>
-          <p>22/tcp open SSH</p>
+          <pre className='font-mono'>
+            {'Port     State       Service\n'}
+            {'22/tcp   open        ssh'}
+          </pre>
           <br />
           <p>No exact OS matches for host</p>
           <br />
@@ -74,12 +76,9 @@ const HackingSequence = ({ onComplete }) => {
       {/* The final results, appear instantly */}
       {step >= 4 && (
         <div className='mt-2 text-text-primary'>
-          <p>Connecting to 10.2.2.2:22 - rootpw: “Z10N0101”</p>
-          <p>Attempting to exploit SSHv1 CRC32...</p>
-          <p>
-            Resetting root password to “Z10N0101”:{' '}
-            <span className='text-matrix-green'>Successful.</span>
-          </p>
+          <p>Connecting to 10.2.2.2:ssh ... successful”</p>
+          <p>Attempting to exploit SSHv1 CRC32 ... successful</p>
+          <p>Resetting root password to “Z10N0101”.</p>
           <p>System open: Access level &lt;9&gt;</p>
         </div>
       )}
