@@ -39,12 +39,13 @@ const AboutSection = () => {
       <div className='flex flex-col md:flex-row gap-16 md:gap-12 items-start'>
         {/* Left Column: ASCII Avatar */}
         <motion.div
-          className='w-full md:w-1/2 relative overflow-x-auto'
+          className='w-full md:w-1/2 relative overflow-x-auto flex justify-center'
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2 }}
         >
+          <div className=' scan-line-effect w-11/12'></div>
           <pre
             className='text-matrix-green-dark leading-tight font-mono'
             style={{ fontSize: AVATAR_FONT_SIZE }}
