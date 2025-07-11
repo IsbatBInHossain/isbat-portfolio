@@ -1,3 +1,5 @@
+import { asciiAvatar } from './constants'
+
 // A central place for all data
 export const config = {
   name: 'Isbat',
@@ -17,9 +19,24 @@ export const config = {
 
   // About me content
   about: {
-    title: 'About Me',
-    description:
-      'I am a backend engineer with a passion for building scalable systems, APIs, and developer tools. I work primarily with Node.js, Django, PostgreSQL, and Redis, and enjoy solving problems at the intersection of backend logic, data, and infrastructure. Outside of code, I’m deeply curious about system design, networking, and low-level programming—and always exploring ways to build things from the ground up',
+    title: '// 02. About_Me',
+    avatar: asciiAvatar,
+    // Content for the [ INFO ] tab
+    info: {
+      USER: 'Isbat',
+      ROLE: 'Backend Engineer',
+      STATUS: 'Seeking New Challenges',
+      HOST: '127.0.0.1',
+    },
+    // Content for the [ STACK ] tab
+    stack: {
+      Languages: ['Node.js', 'Python', 'Typescript', 'C'],
+      Databases: ['PostgreSQL', 'Redis', 'MongoDB'],
+      Tools: ['Docker', 'Git'],
+      Frontend: ['React', 'Redux', 'Tailwind', 'Next.js'],
+    },
+    // Content for the [ BIO ] tab
+    bio: 'I am a backend engineer with a passion for building scalable systems, APIs, and developer tools. I work primarily with Node.js, Django, PostgreSQL, and Redis, and enjoy solving problems at the intersection of backend logic, data, and infrastructure. Outside of code, I’m deeply curious about system design, networking, and low-level programming—and always exploring ways to build things from the ground up',
   },
 
   // Project details

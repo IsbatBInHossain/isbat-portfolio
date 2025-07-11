@@ -18,7 +18,7 @@ const Footer = () => {
             <span className='text-matrix-green'>//</span> 02. About
           </h2>
           <p className='text-text-secondary max-w-2xl mx-auto leading-relaxed'>
-            {config.about.description}
+            {config.about.bio}
           </p>
         </div>
 
