@@ -1,14 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import WakeUpSequence from './WakeUpSequence'
-import HackingSequence from './HackingSequence' // 1. IMPORT THE REAL COMPONENT
+import HackingSequence from './HackingSequence'
 
 const Loader = ({ isFirstVisit, onLoadingComplete }) => {
-  const [sequence, setSequence] = useState(isFirstVisit ? 'wakeUp' : 'hacking')
-
-  // This state will now control the whole loader's sequence
   const [step, setStep] = useState(0)
+  const scrollAnchorRef = useRef(null)
 
   const handleSequenceComplete = () => {
     setStep(prev => prev + 1)
@@ -16,23 +14,41 @@ const Loader = ({ isFirstVisit, onLoadingComplete }) => {
 
   useEffect(() => {
     if (step === 0) {
-      // Initial state
-      if (!isFirstVisit) {
-        setStep(1) // Skip straight to hacking
-      }
+      if (!isFirstVisit) setStep(1)
     } else if (step === 2) {
       onLoadingComplete()
     }
   }, [step, isFirstVisit, onLoadingComplete])
 
+  // Scroll logic
+  useEffect(() => {
+    // Use mutation observer for observing DOM changes
+    const observer = new MutationObserver(() => {
+      if (scrollAnchorRef.current) {
+        scrollAnchorRef.current.scrollIntoView({ behavior: 'smooth' })
+      }
+    })
+
+    if (scrollAnchorRef.current) {
+      observer.observe(scrollAnchorRef.current.parentNode, {
+        childList: true,
+        subtree: true,
+      })
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className='fixed top-0 left-0 w-full h-full bg-background z-[9999] overflow-hidden'>
-      <div className='crt-text p-4'>
+    <div className='fixed top-0 left-0 w-full h-full bg-background z-[9999] overflow-y-auto'>
+      <div className='crt-text p-4 text-lg'>
         {step === 0 && isFirstVisit && (
           <WakeUpSequence onComplete={handleSequenceComplete} />
         )}
 
         {step === 1 && <HackingSequence onComplete={handleSequenceComplete} />}
+
+        <div ref={scrollAnchorRef}></div>
       </div>
     </div>
   )

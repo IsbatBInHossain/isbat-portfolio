@@ -6,20 +6,19 @@ import { TypeAnimation } from 'react-type-animation'
 const HackingSequence = ({ onComplete }) => {
   const [step, setStep] = useState(0)
 
-  // Use a simple chain of timeouts to reveal each part of the sequence
   useEffect(() => {
     const timeouts = [
-      setTimeout(() => setStep(1), 700), // Show nmap command
-      setTimeout(() => setStep(2), 2500), // Show nmap results
-      setTimeout(() => setStep(3), 3500), // Show sshnuke command
-      setTimeout(() => setStep(4), 5000), // Show sshnuke results
-      setTimeout(onComplete, 6000), // Signal completion of this part
+      setTimeout(() => setStep(1), 700),
+      setTimeout(() => setStep(2), 2500),
+      setTimeout(() => setStep(3), 3500),
+      setTimeout(() => setStep(4), 5000),
+      setTimeout(onComplete, 6000),
     ]
     return () => timeouts.forEach(clearTimeout)
   }, [onComplete])
 
   return (
-    <div className='font-mono text-sm crt-text'>
+    <div className='font-mono text-lg crt-text'>
       <p>* Welcome to CityPower Grid Rerouting *</p>
       <p>Authorised Users only</p>
       <p>New users MUST notify Sys/Ops.</p>
