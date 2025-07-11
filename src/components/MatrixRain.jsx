@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 
 const MatrixRain = () => {
   // Animation speed
-  const speed = 45
+  const speed = 30
 
   const canvasRef = useRef(null)
   const animationFrameIdRef = useRef(null)
@@ -16,7 +16,7 @@ const MatrixRain = () => {
 
     const ctx = canvas.getContext('2d')
     const characters = anomalyCharcters
-    const fontSize = 12
+    const fontSize = 13
     let columns = 0
     let rainDrops = []
 
@@ -81,7 +81,7 @@ const MatrixRain = () => {
   return (
     <canvas
       ref={canvasRef}
-      className='absolute top-0 left-0 w-full h-full z-[-1]'
+      className='absolute top-0 left-0 w-full h-full z-[-1] opacity-70'
     />
   )
 }

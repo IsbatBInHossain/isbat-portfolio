@@ -55,7 +55,7 @@ const AboutSection = () => {
 
         {/* Right Column: Interactive Dossier */}
         <motion.div
-          className='w-full md:w-1/2 border border-matrix-green-dark/30 p-6 rounded-lg'
+          className='w-full md:w-1/2 border border-matrix-green-dark/30 p-6 bg-background rounded-lg'
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
