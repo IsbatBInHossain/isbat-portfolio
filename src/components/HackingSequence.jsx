@@ -19,7 +19,7 @@ const HackingSequence = ({ onComplete }) => {
   }, [onComplete])
 
   return (
-    <div className='font-mono text-lg'>
+    <div className='font-mono text-sm crt-text'>
       <p>* Welcome to CityPower Grid Rerouting *</p>
       <p>Authorised Users only</p>
       <p>New users MUST notify Sys/Ops.</p>
@@ -67,7 +67,7 @@ const HackingSequence = ({ onComplete }) => {
             sequence={['> sshnuke 10.2.2.2 -rootpw “Z10N0101”']}
             wrapper='p'
             cursor={false}
-            speed={50}
+            speed={60}
           />
         </div>
       )}
