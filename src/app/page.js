@@ -6,9 +6,11 @@ export default function Home() {
   return (
     <main className='flex min-h-screen flex-col items-center'>
       <HeroSection />
-      <div className='max-w-4xl w-full p-4 md:p-8 lg:p-12'>
-        <ProjectShowcase />
-        <Footer />
+      <div className='grid-background w-full flex justify-center'>
+        <div className='max-w-4xl w-full p-4 md:p-8 lg:p-12'>
+          <ProjectShowcase />
+          <Footer />
+        </div>
       </div>
     </main>
   )

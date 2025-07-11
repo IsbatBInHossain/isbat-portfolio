@@ -177,6 +177,19 @@
     animation: flicker 0.15s infinite;
   }
 
+  /* Background Grid layer */
+  .grid-background {
+    position: relative;
+    background-color: var(--color-background);
+    background-image: linear-gradient(
+        rgba(0, 143, 38, 0.5) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(0, 143, 38, 0.5) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    background-position: center center;
+  }
+
   /* Blinking Text/Cursor Animation */
   @keyframes flicker {
     0% {
