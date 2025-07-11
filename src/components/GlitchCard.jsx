@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { anomalyCharcters } from '@/data/constants'
 
 const generateRandomString = (length, characterSet) => {
   let result = ''
@@ -12,8 +13,7 @@ const generateRandomString = (length, characterSet) => {
   }
   return result
 }
-const anomolyCharacters =
-  'アィカサタナハマヤャラワガザダバパイキシチニヒミリギジヂビピウクスツヌフムユュルグズブヅプエケセテネヘメレゲゼデベペオコソトノホモヨョロゴゾドボポヴッンАВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0123456789#?&%$*<>'
+const anomolyCharacters = anomalyCharcters
 
 const GlitchCard = ({ children }) => {
   const [isDecrypting, setIsDecrypting] = useState(false)
@@ -53,7 +53,7 @@ const GlitchCard = ({ children }) => {
   return (
     <motion.div
       className='relative w-full h-[350px] rounded-lg overflow-hidden border border-matrix-green-dark/30'
-      // onViewportEnter now just updates our ref.
+      // onViewportEnter updates ref.
       onViewportEnter={() => {
         isInViewRef.current = true
         // If the component is already ready when it enters view, decrypt immediately.

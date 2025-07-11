@@ -1,5 +1,6 @@
 'use client'
 
+import { anomalyCharcters } from '@/data/constants'
 import { useEffect, useRef } from 'react'
 
 const MatrixRain = () => {
@@ -14,8 +15,7 @@ const MatrixRain = () => {
     if (!canvas) return
 
     const ctx = canvas.getContext('2d')
-    const characters =
-      'アィカサタナハマヤャラワガザダバパイキシチニヒミリギジヂビピウクスツヌフムユュルグズブヅプエケセテネヘメレゲゼデベペオコソトノホモヨョロゴゾドボポヴッンアィカサタナハマヤャラワガザダバパイキシチニヒミリギジヂビピウクスツヌフムユュルグズブヅプエケセテネヘメレゲゼデベペオコソトノホモヨョロゴゾドボポヴッンГДЕЖЗИЙКЛПУФХЦЧШЩЪЫЬЭЮЯбвгджзийклмнптуфхцчшщъыьэюяᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛞᛟᛠᛡᛢᛣᛤᛥᛦᛩᛯᛰ0123456789AEFHIKLMNTVWXYZ'
+    const characters = anomalyCharcters
     const fontSize = 12
     let columns = 0
     let rainDrops = []
