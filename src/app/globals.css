@@ -190,6 +190,47 @@
     background-position: center center;
   }
 
+  /* Pulsing animation */
+  @keyframes pulse-grid {
+    0%,
+    100% {
+      --spotlight-size: 150px;
+    }
+    50% {
+      --spotlight-size: 250px;
+    }
+  }
+
+  /* Spotlight layer */
+  .interactive-grid-spotlight {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background-image: linear-gradient(
+        rgba(0, 255, 65, 0.5) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(0, 255, 65, 0.5) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    background-position: center center;
+
+    mask-image: radial-gradient(
+      circle var(--spotlight-size, 150px) at var(--mouse-x, -999px)
+        var(--mouse-y, -999px),
+      black 0%,
+      transparent 100%
+    );
+    -webkit-mask-image: radial-gradient(
+      circle var(--spotlight-size, 150px) at var(--mouse-x, -999px)
+        var(--mouse-y, -999px),
+      black 0%,
+      transparent 100%
+    );
+    animation: pulse-grid 3s infinite ease-in-out;
+  }
+
   /* Blinking Text/Cursor Animation */
   @keyframes flicker {
     0% {
