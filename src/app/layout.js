@@ -25,15 +25,19 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang='en'>
-      <body className={firaCode.className}>
-        {isLoading ? (
-          <Loader onLoadingComplete={() => setIsLoading(false)} />
-        ) : (
-          <>
-            <Navbar />
-            {children}
-          </>
-        )}
+      <body className={`${firaCode.className} bg-background`}>
+        <div className=' crt-effect'>
+          {isLoading ? (
+            <Loader onLoadingComplete={() => setIsLoading(false)} />
+          ) : (
+            <>
+              <main className='crt-text'>
+                <Navbar />
+                {children}
+              </main>
+            </>
+          )}
+        </div>
       </body>
     </html>
   )
