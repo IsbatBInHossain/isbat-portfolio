@@ -30,6 +30,13 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang='en'>
+      <head>
+        <meta
+          name='description'
+          content='The portfolio of Isbat Bin Hossain, a Backend Engineer and System Builder, showcasing projects in Node.js, Python and more.'
+        />
+        <link rel='icon' href='/icon.svg' type='image/svg+xml' />
+      </head>
       <body className={`${firaCode.className} ${vt323.variable} bg-background`}>
         <div className='crt-effect'>
           {isFirstVisit === null ? (
