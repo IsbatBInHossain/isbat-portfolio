@@ -23,11 +23,15 @@ export const config = {
     avatar: asciiAvatar,
     // Content for the [ INFO ] tab
     info: {
-      USER: 'Isbat',
-      ROLE: 'Backend Engineer',
-      STATUS: 'Seeking New Challenges',
-      LOCATION: 'Cyber Space',
-      HOST: '127.0.0.1',
+      EXPERIENCE: '1+ Years',
+      MAIN_FOCUS: 'Backend & System Architecture',
+      METHODOLOGY: [
+        'Version Control (Git)',
+        'Modular Design',
+        'API-first Development',
+      ],
+      ARCHITECTURE: ['Microservices', 'RESTful APIs', 'Client-Server Model'],
+      CURRENTLY_LEARNING: 'Go, Network Programming & Advanced System Design',
     },
     // Content for the [ STACK ] tab
     stack: {
@@ -45,15 +49,31 @@ export const config = {
     {
       title: 'NodeChess',
       description:
-        'A real-time multiplayer chess web app with matchmaking, built using WebSockets and a Node.js backend. Optimized for mobile and responsive play.',
+        'A real-time multiplayer chess web app with matchmaking, built using WebSockets and a Node.js backend. Optimized for responsive play.',
       tags: ['Node.js', 'WebSocket', 'Express', 'React', 'MongoDB'],
       githubUrl: 'https://github.com/IsbatBInHossain/nodechess',
       demoUrl: 'https://node-chess.netlify.app/',
     },
     {
+      title: 'Draftcraft',
+      description:
+        'A collaborative online design tool with real-time chat, cursors, and reactions, built using Next.js and Liveblocks for a seamless multi-user experience.',
+      tags: ['Next.js', 'TypeScript', 'Liveblocks', 'TailwindCSS', 'Fabric.js'],
+      githubUrl: 'https://github.com/IsbatBInHossain/draftcraft',
+      demoUrl: '',
+    },
+    {
+      title: 'Codenotes',
+      description:
+        'A note-taking CLI app that lets you write notes in code, run JS in a sandboxed environment, and import any library. Published as an NPM package.',
+      tags: ['Node.js', 'TypeScript', 'CLI', 'NPM'],
+      githubUrl: 'https://github.com/IsbatBInHossain/codenotes',
+      demoUrl: 'https://www.npmjs.com/package/@isbat/codenotes',
+    },
+    {
       title: 'Custom CMS for Bookstores',
       description:
-        'A flexible, backend-focused CMS built to manage bookstore inventory, orders, and content. Designed with scalability and future website builder integration in mind.',
+        'A flexible, backend-focused CMS built to manage bookstore inventory and orders. Designed with scalability and future integrations in mind.',
       tags: [
         'Node.js',
         'Express',
@@ -65,25 +85,19 @@ export const config = {
       demoUrl: '',
     },
     {
-      title: 'NodeChess',
+      title: 'Warehouse Wizard',
       description:
-        'A real-time multiplayer chess web app with matchmaking, built using WebSockets and a Node.js backend. Optimized for mobile and responsive play.',
-      tags: ['Node.js', 'WebSocket', 'Express', 'React', 'MongoDB'],
-      githubUrl: 'https://github.com/IsbatBInHossain/nodechess',
-      demoUrl: 'https://node-chess.netlify.app/',
+        'An inventory management web app using the MERN stack, allowing users to add, delete, and edit products, with Cloudinary integration for media.',
+      tags: ['MERN', 'Node.js', 'Express', 'React', 'MongoDB', 'Cloudinary'],
+      githubUrl: 'https://github.com/IsbatBInHossain/Warehouse-Wizard',
+      demoUrl: 'https://warehouse-wizard.vercel.app/',
     },
     {
-      title: 'Custom CMS for Bookstores',
+      title: 'Tor Requests Wrapper',
       description:
-        'A flexible, backend-focused CMS built to manage bookstore inventory, orders, and content. Designed with scalability and future website builder integration in mind.',
-      tags: [
-        'Node.js',
-        'Express',
-        'PostgreSQL',
-        'REST API',
-        'Google Books API',
-      ],
-      githubUrl: 'https://github.com/IsbatBInHossain/bookstore-cms-backend',
+        'A Python library for making HTTP requests through the Tor network, providing easy IP anonymization via decorators or direct class usage.',
+      tags: ['Python', 'Tor', 'Networking', 'Security', 'Library'],
+      githubUrl: 'https://github.com/IsbatBInHossain/tor-requests-wrapper',
       demoUrl: '',
     },
   ],
