@@ -31,7 +31,11 @@ export const config = {
         'API-first Development',
       ],
       ARCHITECTURE: ['Microservices', 'RESTful APIs', 'Client-Server Model'],
-      CURRENTLY_LEARNING: 'Go, Network Programming & Advanced System Design',
+      CURRENTLY_LEARNING: [
+        'Go',
+        'Network Programming',
+        'Advanced System Design',
+      ],
     },
     // Content for the [ STACK ] tab
     stack: {
@@ -60,7 +64,7 @@ export const config = {
         'A collaborative online design tool with real-time chat, cursors, and reactions, built using Next.js and Liveblocks for a seamless multi-user experience.',
       tags: ['Next.js', 'TypeScript', 'Liveblocks', 'TailwindCSS', 'Fabric.js'],
       githubUrl: 'https://github.com/IsbatBInHossain/draftcraft',
-      demoUrl: '',
+      demoUrl: 'https://draftcraft.vercel.app/',
     },
     {
       title: 'Codenotes',

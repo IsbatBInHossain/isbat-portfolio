@@ -7,6 +7,22 @@ import { config } from '@/data/config'
 const AVATAR_FONT_SIZE = '8px'
 const bootTime = new Date()
 
+// --- Animation Variants for the Info Tab ---
+const infoContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, // Each child will animate 0.1s after the previous one
+    },
+  },
+}
+
+const infoItemVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: { opacity: 1, x: 0 },
+}
+
 const AboutSection = () => {
   const [activeTab, setActiveTab] = useState('bio')
   const [uptime, setUptime] = useState('')
@@ -45,13 +61,15 @@ const AboutSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <div className=' scan-line-effect w-11/12'></div>
-          <pre
-            className='text-matrix-green-dark leading-tight font-mono'
-            style={{ fontSize: AVATAR_FONT_SIZE }}
-          >
-            {config.about.avatar}
-          </pre>
+          <div className='relative w-11/12 mx-auto'>
+            <div className='scan-line-effect'></div>
+            <pre
+              className='text-matrix-green-dark leading-tight font-mono'
+              style={{ fontSize: AVATAR_FONT_SIZE }}
+            >
+              {config.about.avatar}
+            </pre>
+          </div>
         </motion.div>
 
         {/* Right Column: Interactive Dossier */}
@@ -83,24 +101,51 @@ const AboutSection = () => {
           {/* Tab Content */}
           <div className='min-h-[250px] text-sm'>
             {activeTab === 'info' && (
-              <div className='space-y-3 font-mono'>
+              // This container orchestrates the stagger animation
+              <motion.div
+                key='info'
+                className='space-y-3 font-mono'
+                variants={infoContainerVariants}
+                initial='hidden'
+                animate='visible'
+              >
                 {Object.entries(config.about.info).map(([key, value]) => (
-                  <p key={key}>
+                  // Each line is now a motion component
+                  <motion.div key={key} variants={infoItemVariants}>
                     <span className='text-text-secondary'>{key}:</span>
-                    <span className='ml-4 text-text-primary'>{value}</span>
-                  </p>
+                    <div className='inline-block ml-4 text-text-primary'>
+                      {/* Check if the value is an array */}
+                      {Array.isArray(value) ? (
+                        <div className='flex flex-wrap gap-2 mt-1'>
+                          {value.map(item => (
+                            <span
+                              key={item}
+                              className='bg-matrix-green/10 text-matrix-green text-xs px-2 py-1 rounded'
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      ) : (
+                        <span>{value}</span>
+                      )}
+                    </div>
+                  </motion.div>
                 ))}
-                {/* Display the dynamic uptime */}
-                <p>
-                  <span className='text-text-secondary'>UPTIME:</span>
-                  <span className='ml-4 text-text-primary'>{uptime}</span>
-                </p>
-              </div>
+              </motion.div>
             )}
             {activeTab === 'stack' && (
-              <div className='space-y-4 font-mono'>
+              // Apply the same stagger animation to the stack tab
+              <motion.div
+                key='stack' // Add key
+                className='space-y-4 font-mono'
+                variants={infoContainerVariants}
+                initial='hidden'
+                animate='visible'
+              >
                 {Object.entries(config.about.stack).map(([category, items]) => (
-                  <div key={category}>
+                  // Each category is now a motion component
+                  <motion.div key={category} variants={infoItemVariants}>
                     <p className='text-text-secondary mb-2'>{category}:</p>
                     <div className='flex flex-wrap gap-2'>
                       {items.map(item => (
@@ -112,14 +157,22 @@ const AboutSection = () => {
                         </span>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             )}
+
             {activeTab === 'bio' && (
-              <p className='text-text-secondary leading-relaxed'>
+              // Apply a simple fade-in animation to the bio tab
+              <motion.p
+                key='bio' // Add key
+                className='text-text-secondary leading-relaxed'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
                 {config.about.bio}
-              </p>
+              </motion.p>
             )}
           </div>
         </motion.div>
