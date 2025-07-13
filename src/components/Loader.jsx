@@ -4,20 +4,31 @@ import { useState, useEffect, useRef } from 'react'
 import WakeUpSequence from './WakeUpSequence'
 import HackingSequence from './HackingSequence'
 import PasswordModal from './PasswordModal'
+import { TypeAnimation } from 'react-type-animation'
+
+// Short starting sequence for returning visitors
+const FastBootSequence = ({ onComplete }) => {
+  useEffect(() => {
+    const timer = setTimeout(onComplete, 3000) // End after 2 seconds
+    return () => clearTimeout(timer)
+  }, [onComplete])
+
+  return (
+    <TypeAnimation
+      sequence={[
+        '> SYSTEM CHECK ... OK\n> USER AUTHENTICATED...\n> LAUNCHING...',
+      ]}
+      wrapper='pre'
+      cursor={false}
+      speed={60}
+    />
+  )
+}
 
 const Loader = ({ isFirstVisit, onLoadingComplete }) => {
-  const [step, setStep] = useState(isFirstVisit ? 0 : 1)
-  const [showModal, setShowModal] = useState(false)
+  const [longSequenceStep, setLongSequenceStep] = useState(0)
 
   const scrollAnchorRef = useRef(null)
-
-  const handleHackingComplete = () => {
-    setShowModal(true)
-  }
-
-  const handleModalComplete = () => {
-    onLoadingComplete()
-  }
 
   // Auto-scrolling logic
   useEffect(() => {
@@ -35,16 +46,31 @@ const Loader = ({ isFirstVisit, onLoadingComplete }) => {
     return () => observer.disconnect()
   }, [])
 
+  if (!isFirstVisit) {
+    // Fast sequence for returning visitors
+    return (
+      <div className='fixed top-0 left-0 w-full h-full bg-background z-[9999] p-4'>
+        <div className='crt-text text-lg'>
+          <FastBootSequence onComplete={onLoadingComplete} />
+        </div>
+      </div>
+    )
+  }
+
+  // Render the full, multi-step sequence for first-time visitors
   return (
     <div className='fixed top-0 left-0 w-full h-full bg-background z-[9999] overflow-y-auto'>
       <div className='crt-text p-4 text-lg'>
-        {step === 0 ? (
-          <WakeUpSequence onComplete={() => setStep(1)} />
-        ) : (
-          <HackingSequence onComplete={handleHackingComplete} />
+        {longSequenceStep === 0 && (
+          <WakeUpSequence onComplete={() => setLongSequenceStep(1)} />
+        )}
+        {longSequenceStep >= 1 && (
+          <HackingSequence onComplete={() => setLongSequenceStep(2)} />
         )}
 
-        {showModal && <PasswordModal onComplete={handleModalComplete} />}
+        {longSequenceStep === 2 && (
+          <PasswordModal onComplete={onLoadingComplete} />
+        )}
 
         <div ref={scrollAnchorRef}></div>
       </div>
