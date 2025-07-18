@@ -1,4 +1,4 @@
-'use client' // Use client-side hooks for the animation
+'use client'
 
 import { TypeAnimation } from 'react-type-animation'
 import { config } from '@/data/config'
@@ -6,7 +6,27 @@ import MatrixRain from './MatrixRain'
 import { motion } from 'framer-motion'
 import { FiChevronDown } from 'react-icons/fi'
 
+// Animation variants for the button container
+const buttonContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // Buttons will fade in 0.2s after one another
+      delayChildren: 1.5, // Start the animation after a 1.5s delay
+    },
+  },
+};
+
+// Animation variants for each individual button
+const buttonVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
+};
+
+
 const HeroSection = () => {
+
   return (
     <section className='relative flex flex-col items-center justify-center text-center h-[100vh] min-h-[400px] md:min-h-[500px] mb-16 overflow-hidden w-full'>
       <MatrixRain />
@@ -25,6 +45,35 @@ const HeroSection = () => {
             repeat={Infinity}
             className='font-mono'
           />
+          <motion.div
+          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
+          variants={buttonContainerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Button 1: View Online Resume */}
+          <motion.a
+            href="https://rxresu.me/isbatbinhossain/isbat-bin-hossain"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-sm border border-matrix-green-dark/50 px-6 py-3 rounded text-text-secondary 
+                       hover:border-matrix-green hover:text-matrix-green hover:-translate-y-1 transition-all duration-300"
+            variants={buttonVariants}
+          >
+            [ VIEW_RESUME ]
+          </motion.a>
+
+          {/* Button 2: Download CV PDF */}
+          <motion.a
+            href="/Isbat_Bin_Hossain_CV.pdf"
+            download 
+            className="font-mono text-sm border border-matrix-green-dark/50 px-6 py-3 rounded text-text-secondary 
+                       hover:border-matrix-green hover:text-matrix-green hover:-translate-y-1 transition-all duration-300"
+            variants={buttonVariants}
+          >
+            [ DOWNLOAD_CV.PDF ]
+          </motion.a>
+        </motion.div>
         </div>
       </div>
       {/* Scroll down indicator */}
