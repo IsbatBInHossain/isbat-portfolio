@@ -1,4 +1,4 @@
-import { asciiAvatar } from './constants'
+import { asciiAvatar } from './constants';
 
 // A central place for all data
 export const config = {
@@ -10,7 +10,7 @@ export const config = {
   // Rotating role sequences
   heroSequence: [
     'Backend Developer.',
-    2000, // Pauses for 2 seconds
+    2000,
     'Software Engineer.',
     2000,
     'System Builder.',
@@ -23,7 +23,7 @@ export const config = {
     avatar: asciiAvatar,
     // Content for the [ INFO ] tab
     info: {
-      EXPERIENCE: '1+ Years',
+      EXPERIENCE: '2+ Years',
       MAIN_FOCUS: 'Backend & System Architecture',
       METHODOLOGY: [
         'Version Control (Git)',
@@ -32,20 +32,21 @@ export const config = {
       ],
       ARCHITECTURE: ['Microservices', 'RESTful APIs', 'Client-Server Model'],
       CURRENTLY_LEARNING: [
-        'Go',
-        'Network Programming',
-        'Advanced System Design',
+        'Operating Systems',
+        'Systems Programming',
+        'Golang',
       ],
     },
     // Content for the [ STACK ] tab
     stack: {
-      Languages: ['Node.js', 'Python', 'Typescript', 'C'],
+      Languages: ['JavaScript', 'TypeScript', 'Python', 'C', 'Go'],
+      Backend: ['Node.js', 'Express', 'Django'],
       Databases: ['PostgreSQL', 'Redis', 'MongoDB'],
-      Tools: ['Docker', 'Git'],
-      Frontend: ['React', 'Redux', 'Tailwind', 'Next.js'],
+      Frontend: ['React', 'Next.js', 'Redux', 'Tailwind'],
+      Tools: ['Docker', 'Git', 'Linux'],
     },
     // Content for the [ BIO ] tab
-    bio: 'I am a backend engineer with a passion for building scalable systems, APIs, and developer tools. I work primarily with Node.js, Django, PostgreSQL, and Redis, and enjoy solving problems at the intersection of backend logic, data, and infrastructure. Outside of code, I’m deeply curious about system design, networking, and low-level programming—and always exploring ways to build things from the ground up',
+    bio: "Backend engineer focused on APIs, developer tools, and understanding how things work at the system level. I work primarily with Node.js, PostgreSQL, and Redis, and lately I've been going deeper into systems programming — memory, processes, and how the OS works under the hood. Outside of code — books, long walks, and music.",
   },
 
   // Project details
@@ -53,10 +54,50 @@ export const config = {
     {
       title: 'NodeChess',
       description:
-        'A real-time multiplayer chess web app with matchmaking, built using WebSockets and a Node.js backend. Optimized for responsive play.',
-      tags: ['Node.js', 'WebSocket', 'Express', 'React', 'MongoDB'],
+        'A real-time multiplayer chess web app with matchmaking, built using WebSockets and a Node.js backend. Redis for live game state and session caching, PostgreSQL for persistence.',
+      tags: [
+        'Node.js',
+        'WebSocket',
+        'Express',
+        'React',
+        'Redis',
+        'PostgreSQL',
+        'Docker',
+      ],
       githubUrl: 'https://github.com/IsbatBInHossain/nodechess',
       demoUrl: 'https://node-chess.netlify.app/',
+    },
+    {
+      title: 'create-x-lite',
+      description:
+        'A modern, interactive CLI for scaffolding production-ready Express.js projects. Inspired by create-vite.',
+      tags: ['Node.js', 'JavaScript', 'CLI', 'Express', 'TypeScript'],
+      githubUrl: 'https://github.com/IsbatBInHossain/create-x-lite',
+      demoUrl: 'https://www.npmjs.com/package/create-x-lite',
+    },
+    {
+      title: 'imalloc',
+      description:
+        'A custom memory allocator written in C. Implements a first-fit free list, block splitting, forward and backward coalescing, sbrk-based heap growth, and mmap for large allocations.',
+      tags: ['C', 'Systems Programming', 'Memory Management', 'Low-level'],
+      githubUrl: 'https://github.com/IsbatBInHossain/imalloc',
+      demoUrl: '',
+    },
+    {
+      title: 'ishell',
+      description:
+        'A Unix shell built from scratch in C. Supports pipelines, I/O redirection, background processes, quote parsing, and builtin commands. POSIX only.',
+      tags: ['C', 'Unix', 'Linux', 'Shell', 'Systems Programming'],
+      githubUrl: 'https://github.com/IsbatBInHossain/ishell',
+      demoUrl: '',
+    },
+    {
+      title: 'Codenotes',
+      description:
+        'A browser-based coding notebook with a sandboxed JS runtime powered by esbuild-wasm. Import any npm library, render React components inline, and write markdown notes alongside code.',
+      tags: ['React', 'TypeScript', 'esbuild', 'Redux', 'NPM'],
+      githubUrl: 'https://github.com/IsbatBInHossain/codenotes',
+      demoUrl: 'https://www.npmjs.com/package/@isbat/codenotes',
     },
     {
       title: 'Draftcraft',
@@ -67,42 +108,12 @@ export const config = {
       demoUrl: 'https://draftcraft.vercel.app/',
     },
     {
-      title: 'Codenotes',
-      description:
-        'A note-taking CLI app that lets you write notes in code, run JS in a sandboxed environment, and import any library. Published as an NPM package.',
-      tags: ['Node.js', 'TypeScript', 'CLI', 'NPM'],
-      githubUrl: 'https://github.com/IsbatBInHossain/codenotes',
-      demoUrl: 'https://www.npmjs.com/package/@isbat/codenotes',
-    },
-    {
-      title: 'Custom CMS for Bookstores',
-      description:
-        'A flexible, backend-focused CMS built to manage bookstore inventory and orders. Designed with scalability and future integrations in mind.',
-      tags: [
-        'Node.js',
-        'Express',
-        'PostgreSQL',
-        'REST API',
-        'Google Books API',
-      ],
-      githubUrl: 'https://github.com/IsbatBInHossain/bookstore-cms-backend',
-      demoUrl: '',
-    },
-    {
       title: 'Warehouse Wizard',
       description:
         'An inventory management web app using the MERN stack, allowing users to add, delete, and edit products, with Cloudinary integration for media.',
-      tags: ['MERN', 'Node.js', 'Express', 'React', 'MongoDB', 'Cloudinary'],
+      tags: ['Node.js', 'Express', 'React', 'MongoDB', 'Cloudinary'],
       githubUrl: 'https://github.com/IsbatBInHossain/Warehouse-Wizard',
       demoUrl: 'https://warehouse-wizard.vercel.app/',
-    },
-    {
-      title: 'Tor Requests Wrapper',
-      description:
-        'A Python library for making HTTP requests through the Tor network, providing easy IP anonymization via decorators or direct class usage.',
-      tags: ['Python', 'Tor', 'Networking', 'Security', 'Library'],
-      githubUrl: 'https://github.com/IsbatBInHossain/tor-requests-wrapper',
-      demoUrl: '',
     },
   ],
 
@@ -115,4 +126,4 @@ export const config = {
       email: 'mailto:isbatbinhossain@gmail.com',
     },
   },
-}
+};
